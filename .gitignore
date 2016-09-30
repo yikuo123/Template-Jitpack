@@ -1,0 +1,12 @@
+.gradle
+local.properties
+build
+*.apk
+bin
+.idea
+*.iml
+manifest-merger-release-report.txt
+*/gradle.properties
+BuglyUploadLog.txt
+/captures
+.externalNativeBuild
