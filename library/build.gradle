@@ -9,12 +9,12 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0.0"
-        consumerProguardFiles 'proguard-rules.pro'
+        consumerProguardFiles 'consumer-proguard-rules.pro'
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro'
         }
     }
     compileOptions {
@@ -35,7 +35,7 @@ dependencies {
 
 //region jitpack
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.yikuo123'
+group = 'com.ikecin.sdk'
 
 // build a jar with source files
 task sourcesJar(type: Jar) {
@@ -48,6 +48,12 @@ task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.compile
+    options {
+        encoding 'utf-8'
+        charSet 'utf-8'
+    }
+    exclude '**/BuildConfig.java'
+    exclude '**/R.java'
 }
 
 // build a jar with javadoc
@@ -61,3 +67,18 @@ artifacts {
     archives javadocJar
 }
 //endregion
+
+// region 发布到本地maven仓库
+uploadArchives {
+    println '------------'
+    println rootDir.toPath().resolve('maven').toUri()
+    println '------------'
+    repositories {
+        mavenDeployer {
+            repository(url: rootDir.toPath().resolve('maven').toUri())
+            pom.version = android.defaultConfig.versionName
+            pom.artifactId = "device"
+        }
+    }
+}
+// endregion

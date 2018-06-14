@@ -10,3 +10,5 @@ manifest-merger-release-report.txt
 BuglyUploadLog.txt
 /captures
 .externalNativeBuild
+signing.gradle
+/maven

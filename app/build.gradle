@@ -12,8 +12,21 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            zipAlignEnabled true
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            zipAlignEnabled false
         }
     }
     compileOptions {
@@ -21,6 +34,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions "default"
+}
+
+try {
+    apply from: 'signing.gradle'
+    println "从 signing.gradle 中读取签名配置"
+} catch (ignored) {
+    println "signing.gradle 不存在,已忽略并使用默认签名配置"
 }
 
 repositories {

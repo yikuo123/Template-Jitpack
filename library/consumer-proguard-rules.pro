@@ -15,18 +15,4 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
-# region lib需要避免公共和保护方法被混淆
--optimizations !code/allocation/variable
--keep public class * {
-    public protected *;
-}
-# endregion
-
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
-
--dontwarn org.apache.**
--dontwarn android.**
--dontwarn java.lang.invoke.**
-
+-dontwarn javax.annotation.**
