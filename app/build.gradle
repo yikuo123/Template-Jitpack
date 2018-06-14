@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.jitpack"
+        applicationId "com.ikecin.demo"
         minSdkVersion 17
         targetSdkVersion 22
         versionCode 1
@@ -38,9 +37,9 @@ android {
 
 try {
     apply from: 'signing.gradle'
-    println "´Ó signing.gradle ÖĞ¶ÁÈ¡Ç©ÃûÅäÖÃ"
+    println "ä» signing.gradle ä¸­è¯»å–ç­¾åé…ç½®"
 } catch (ignored) {
-    println "signing.gradle ²»´æÔÚ,ÒÑºöÂÔ²¢Ê¹ÓÃÄ¬ÈÏÇ©ÃûÅäÖÃ"
+    println "signing.gradle ä¸å­˜åœ¨,å·²å¿½ç•¥å¹¶ä½¿ç”¨é»˜è®¤ç­¾åé…ç½®"
 }
 
 repositories {
@@ -50,7 +49,7 @@ repositories {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     implementation project(':library')
 }

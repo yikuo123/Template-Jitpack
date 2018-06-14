@@ -16,7 +16,7 @@
 #   public *;
 #}
 
-# region libĞèÒª±ÜÃâ¹«¹²ºÍ±£»¤·½·¨±»»ìÏı
+# region libéœ€è¦é¿å…å…¬å…±å’Œä¿æŠ¤æ–¹æ³•è¢«æ··æ·†
 -optimizations !code/allocation/variable
 -keep public class * {
     public protected *;

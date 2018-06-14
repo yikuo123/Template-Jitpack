@@ -1,14 +1,23 @@
+//region 自定义配置
+ext {
+    customVersionCode = 1
+    customVersionName = '1.0.0'
+    customGroupId = 'com.ikecin.sdk' //只对本地maven有效，jitpack无效
+    customArtifactId = 'demo'  //只对本地maven有效，jitpack无效
+    //记得更改AndroidManifest.xml中的package
+}
+//endregion
+
+// region 常规配置
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
-
+    compileSdkVersion 27
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0.0"
+        versionCode customVersionCode
+        versionName customVersionName
         consumerProguardFiles 'consumer-proguard-rules.pro'
     }
     buildTypes {
@@ -32,12 +41,12 @@ repositories {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 }
+// endregion
 
 //region jitpack
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.ikecin.sdk'
+group = 'com.github.yikuo123'
 
-// build a jar with source files
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
@@ -56,7 +65,6 @@ task javadoc(type: Javadoc) {
     exclude '**/R.java'
 }
 
-// build a jar with javadoc
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
@@ -68,16 +76,15 @@ artifacts {
 }
 //endregion
 
-// region ����������maven�ֿ�
+// region 发布到本地maven仓库
+// 使用命令 gradlew uploadArchives 即可生成
 uploadArchives {
-    println '------------'
-    println rootDir.toPath().resolve('maven').toUri()
-    println '------------'
     repositories {
         mavenDeployer {
             repository(url: rootDir.toPath().resolve('maven').toUri())
-            pom.version = android.defaultConfig.versionName
-            pom.artifactId = "device"
+            pom.groupId = customGroupId
+            pom.version = customVersionName
+            pom.artifactId = customArtifactId
         }
     }
 }

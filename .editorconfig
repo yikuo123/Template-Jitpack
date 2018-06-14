@@ -1,0 +1,32 @@
+﻿# top-most EditorConfig file
+root = true
+
+# 越后面的规则优先级越高
+
+[*]
+end_of_line = crlf
+insert_final_newline = false
+trim_trailing_whitespace = true
+charset = utf-8
+
+[Makefile]
+indent_style = tab
+
+[*.{json,ini,sql}]
+indent_style = space
+indent_size = 2
+
+[*.{js,htm,html,php,css,xml}]
+indent_style = space
+indent_size = 4
+
+[*.{java,c,cpp,h}]
+indent_style = space
+indent_size = 4
+
+[*.{swift,m}]
+indent_style = space
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
