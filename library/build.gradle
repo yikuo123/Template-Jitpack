@@ -1,3 +1,8 @@
+plugins {
+    id "com.github.dcendents.android-maven" version "2.0" //gitpack
+    id "com.android.library"
+}
+
 //region 自定义配置
 ext {
     customVersionCode = 1
@@ -9,8 +14,6 @@ ext {
 //endregion
 
 // region 常规配置
-apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 27
     defaultConfig {
