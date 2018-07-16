@@ -1,4 +1,4 @@
-﻿# top-most EditorConfig file
+# top-most EditorConfig file
 root = true
 
 # 越后面的规则优先级越高
@@ -16,7 +16,7 @@ indent_style = tab
 indent_style = space
 indent_size = 2
 
-[*.{js,htm,html,php,css,xml}]
+[*.{js,htm,html,php,css,xml,vue}]
 indent_style = space
 indent_size = 4
 
