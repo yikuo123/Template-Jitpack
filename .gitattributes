@@ -14,6 +14,3 @@
 *.jpg binary
 *.gif binary
 *.jar binary
-
-# 让 Git 把所有pbxproj文件当成二进制文件
-*.pbxproj binary
