@@ -1,19 +1,15 @@
 plugins {
-    id "com.github.dcendents.android-maven" version "2.0" //gitpack
+    id "com.github.dcendents.android-maven" version "2.0"
     id "com.android.library"
 }
 
-//region 自定义配置
 ext {
     customVersionCode = 1
     customVersionName = '1.0.0'
-    customGroupId = 'com.ikecin.sdk' //只对本地maven有效，jitpack无效
-    customArtifactId = 'demo'  //只对本地maven有效，jitpack无效
-    //记得更改AndroidManifest.xml中的package
+    customGroupId = 'com.ikecin.sdk' /**记得同步更改AndroidManifest.xml中的package */
+    customArtifactId = 'demo'
 }
-//endregion
 
-// region 常规配置
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -44,11 +40,13 @@ repositories {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 }
-// endregion
 
-//region jitpack
+/**
+ * 注意 group、version、artifactId 只对本地maven发布有效，对gitpack无效
+ */
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.yikuo123'
+group = customGroupId
+version = customVersionCode
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -77,18 +75,16 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
-//endregion
 
-// region 发布到本地maven仓库
-// 使用命令 gradlew uploadArchives 即可生成
+/** 使用命令 gradlew uploadArchives 即可发布到本地maven */
 uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: rootDir.toPath().resolve('maven').toUri())
+            //repository(url: "file://D:\\YangHeng\\Documents\\AndroidStudioProjects\\Maven")
             pom.groupId = customGroupId
             pom.version = customVersionName
             pom.artifactId = customArtifactId
         }
     }
 }
-// endregion
