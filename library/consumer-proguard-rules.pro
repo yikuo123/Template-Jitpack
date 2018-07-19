@@ -16,3 +16,8 @@
 #   public *;
 #}
 -dontwarn javax.annotation.**
+
+# 避免jni方法被混淆
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
