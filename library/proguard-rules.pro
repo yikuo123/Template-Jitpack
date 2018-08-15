@@ -23,6 +23,9 @@
 }
 # endregion
 
+# 避免异常名称被混淆
+-keepnames class * extends java.lang.Throwable
+
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 
