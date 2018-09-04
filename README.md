@@ -4,7 +4,7 @@
 
 ## Description
 
-There is description.
+This is description.
 
 ## Usage
 
