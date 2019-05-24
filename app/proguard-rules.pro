@@ -16,4 +16,20 @@
 #   public *;
 #}
 
--keepnames class * extends java.lang.Throwable #避免异常名称被混淆
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+
+-ignorewarnings
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+
+-keepnames class * extends java.lang.Throwable
+-dontwarn com.android.**
+-dontwarn android.**
+-dontwarn androidx.**
+-dontwarn org.**
+-dontwarn com.github.**

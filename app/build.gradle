@@ -1,23 +1,27 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.ikecin.demo"
-        minSdkVersion 17
-        targetSdkVersion 22
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
             zipAlignEnabled true
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
         }
         debug {
             minifyEnabled false
@@ -26,13 +30,27 @@ android {
             jniDebuggable true
             renderscriptDebuggable true
             zipAlignEnabled false
+            ndk {
+                abiFilters "armeabi-v7a" //debug模式只使用特定的abi可以加快构建速度
+            }
         }
+    }
+    dataBinding {
+        enabled = false
+    }
+    dexOptions {
+        jumboMode true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions "default"
+    productFlavors {
+        Demo {
+            applicationId 'com.ikecin.demo'
+        }
+    }
 }
 
 try {
@@ -47,9 +65,10 @@ repositories {
         dirs 'libs'
     }
 }
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation project(':library')
 }

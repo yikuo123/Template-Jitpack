@@ -16,21 +16,27 @@
 #   public *;
 #}
 
-# 作为lib发布时，不应该被混淆和移除公开的方法与属性，参数名也最好不要混淆
+# 作为lib发布时，不应该混淆和移除公开的方法与属性，参数名也最好不要混淆
 
--optimizations !code/allocation/variable
+# 保留常见属性
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
--keepparameternames #不混淆参数名称
 
--keep public class !**.BuildConfig { public protected *; } #避免类和接口的方法被混淆和移除,BuildConfig类除外
+# 避免类和接口的方法被混淆和移除,排除BuildConfig
+-keep public class !**.BuildConfig, * { public protected *; }
 -keep public enum * { public protected *; }
--keepnames class * extends java.lang.Throwable #避免异常名称被混淆
--keep class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *; } #序列化相关
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
--keep public class * extends android.content.ContentProvider
--keepclasseswithmembernames,includedescriptorclasses class * { native <methods>; } #避免包含jni方法的类被混淆和移除
+-keep public interface * { *; }
+
+# 避免包含jni方法的类被混淆和移除；避免jni方法的参数与返回值类型被混淆
+-keepclasseswithmembers,includedescriptorclasses class * { native <methods>; }
+
+# 避免异常名称被混淆
+-keepnames class * extends java.lang.Throwable
+
+# 避免参数名称被混淆,该配置暂时没生效，见https://stackoverflow.com/questions/56057586/how-to-keep-class-constructor-argument-parameter-names-with-android-r8
+-keepparameternames
 
 -dontwarn org.apache.**
 -dontwarn android.**
+-dontwarn androidx.**
 -dontwarn java.lang.invoke.**
+-dontwarn javax.annotation.**

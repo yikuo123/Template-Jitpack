@@ -27,4 +27,4 @@ output.json
 /.idea/kotlinc.xml
 /.idea/codeStyleSettings.xml
 /.idea/caches
-/maven
+/.idea/codeStyles/codeStyleConfig.xml

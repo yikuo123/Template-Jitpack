@@ -1,33 +1,56 @@
 plugins {
-    id "com.github.dcendents.android-maven" version "2.0"
     id "com.android.library"
+    id "digital.wup.android-maven-publish" version "3.6.2"
 }
 
 ext {
     customVersionCode = 1
     customVersionName = '1.0.0'
-    customGroupId = 'com.ikecin.sdk' /**记得同步更改AndroidManifest.xml中的package */
-    customArtifactId = 'demo'
+    customGroupId = 'com.ikecin.sdk'
+    customArtifactId = 'jni' // 必须保证不同的lib中Manifest的package值不一样，建议跟artifact保持一致
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 22
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode customVersionCode
         versionName customVersionName
         consumerProguardFiles 'consumer-proguard-rules.pro'
+        ndk {
+            moduleName "demo"
+        }
     }
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            zipAlignEnabled true
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            zipAlignEnabled false
+            ndk {
+                abiFilters "armeabi-v7a" //debug模式只使用特定的abi可以加快构建速度
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'Android.mk'
+        }
     }
 }
 
@@ -38,15 +61,8 @@ repositories {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(include: ['*.jar'], dir: 'libs')
 }
-
-/**
- * 注意 group、version、artifactId 只对本地maven发布有效，对gitpack无效
- */
-apply plugin: 'com.github.dcendents.android-maven'
-group = customGroupId
-version = customVersionCode
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -71,20 +87,22 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
 
-/** 使用命令 gradlew uploadArchives 即可发布到本地maven */
-uploadArchives {
+/**使用命令 gradlew publish 即可发布到本地maven*/
+publishing {
+    publications {
+        mavenAar(MavenPublication) {
+            groupId customGroupId
+            artifactId customArtifactId
+            version customVersionName
+            artifact sourcesJar
+            artifact javadocJar
+            from components.android
+        }
+    }
     repositories {
-        mavenDeployer {
-            repository(url: rootDir.toPath().resolve('maven').toUri())
-            //repository(url: "file://D:\\YangHeng\\Documents\\AndroidStudioProjects\\Maven")
-            pom.groupId = customGroupId
-            pom.version = customVersionName
-            pom.artifactId = customArtifactId
+        maven {
+            url = projectDir.toPath().resolve('build/maven').toUri()
         }
     }
 }
