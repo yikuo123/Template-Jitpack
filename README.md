@@ -24,7 +24,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.yikuo123:Template-Jitpack:9ed7d36489'
+    implementation 'com.github.yikuo123:Template-Jitpack:4d16276647'
 }
 ```
 
@@ -43,7 +43,7 @@ defaultConfig {
 ## 添加native接口
 
 ```java
-public class Test {
+public class Demo {
     static {
         System.loadLibrary("demo");
     }
