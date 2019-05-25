@@ -130,5 +130,3 @@ target_link_libraries( # Specifies the target library.
 # 其它参考
 
 http://wiki.jikexueyuan.com/project/jni-ndk-developer-guide/
-
-https://blog.piasy.com/2017/08/26/NDK-Start-Guide/#jclass-jmethodid-and-jfieldid
