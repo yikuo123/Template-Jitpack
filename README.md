@@ -55,7 +55,7 @@ android {
 ## 添加 `jni` 接口
 
 ```java
-package com.ikecin.jni;
+package com.ikecin.sdk.jni;
 public class Demo {
     static {
         System.loadLibrary("Demo");
