@@ -1,4 +1,4 @@
-package com.ikecin.jni;
+package com.ikecin.sdk.jni;
 
 public class Demo {
     static {

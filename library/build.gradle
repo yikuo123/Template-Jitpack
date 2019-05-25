@@ -7,7 +7,7 @@ ext {
     customVersionCode = 1
     customVersionName = '1.0.0'
     customGroupId = 'com.ikecin.sdk'
-    customArtifactId = 'jni' // 必须保证不同的lib中Manifest的package值不一样，建议跟artifact保持一致
+    customArtifactId = 'jni' // 必须保证artifactId唯一，AndroidManifest中的package值也要唯一，建议跟artifactID保持一致
 }
 
 android {

@@ -73,13 +73,13 @@ public class Demo {
 ## 使用 `javac` 编译成 `class` 文件
 
 ```bash
-javac src/main/java/com/ikecin/jni/Demo.java -d ./build 
+javac src/main/java/com/ikecin/sdk/jni/Demo.java -d ./build 
 ```
 
 ## 使用 javah 生成c头文件
 
 ```bash
-javah -d src/main/cpp -classpath ./build com.ikecin.jni.Demo
+javah -d src/main/cpp -classpath ./build com.ikecin.sdk.jni.Demo
 ```
 
 `library/main/cpp` 下会自动生成头文件
@@ -104,7 +104,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        com_ikecin_jni_Demo.c)
+        com_ikecin_sdk_jni_Demo.c)
 
 find_library( # Sets the name of the path variable.
         log-lib

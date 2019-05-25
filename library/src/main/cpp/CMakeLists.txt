@@ -17,7 +17,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        com_ikecin_jni_Demo.c)
+        com_ikecin_sdk_jni_Demo.c)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

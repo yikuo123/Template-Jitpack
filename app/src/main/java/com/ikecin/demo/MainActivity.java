@@ -3,7 +3,7 @@ package com.ikecin.demo;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.ikecin.jni.Demo;
+import com.ikecin.sdk.jni.Demo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
