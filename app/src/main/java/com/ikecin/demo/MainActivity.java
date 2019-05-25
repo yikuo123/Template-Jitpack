@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.ok).setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), Demo.methodA(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), Demo.text(), Toast.LENGTH_SHORT).show();
         });
     }
 

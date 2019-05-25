@@ -30,46 +30,51 @@ dependencies {
 
 # JNI 使用说明
 
-## 在module的build.gradle中添加
+## 在 `library` 的 `build.gradle` 中添加 `ndk` 配置
 
 ```gradle
 defaultConfig {
     ndk {
-        moduleName "demo"
+        moduleName "Demo"
     }
 }
 ```
 
-## 添加native接口
+## 添加 `jni` 接口
 
 ```java
+package com.ikecin.jni;
 public class Demo {
     static {
-        System.loadLibrary("demo");
+        System.loadLibrary("Demo");
     }
-    
-    public native String methodA();
+
+    public static native String text();
 }
 ```
 
-## 选中library的Project，执行Build->Make Module
+## 进入 `library` 目录
 
+以下的命令行都是在 `library` 目录执行
+
+
+## 使用 `javac` 编译成 `class` 文件
+
+```bash
+javac src/main/java/com/ikecin/jni/Demo.java -d ./build 
+```
 
 ## 使用 javah 生成c头文件
 
-进入library module目录
-
-
 ```bash
-javah -d src\main\library -classpath build\intermediates\javac\debug\compileDebugJavaWithJavac\classes\ com.ikecin.jni.Demo
+javah -d src/main/cpp -classpath ./build com.ikecin.jni.Demo
 ```
 
-`library\main\jni` 下会自动生成头文件
+`library/main/cpp` 下会自动生成头文件
 
 # 编写C文件
 
 创建同名c文件,实现头文件中的方法
-
 
 # 添加编译脚本
 
@@ -91,7 +96,7 @@ android {
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := demo
+LOCAL_MODULE := Demo
 LOCAL_LDFLAGS := -Wl,--build-id
 LOCAL_LDLIBS := \
     -llog \
@@ -99,9 +104,9 @@ LOCAL_LDLIBS := \
     -lm \
 
 LOCAL_SRC_FILES := \
-    src/main/jni/com_ikecin_jni_Demo.c \
+    src/main/cpp/com_ikecin_jni_Demo.c \
 
-LOCAL_C_INCLUDES += src/main/jni
+LOCAL_C_INCLUDES += src/main/cpp
 
 include $(BUILD_SHARED_LIBRARY)
 ```

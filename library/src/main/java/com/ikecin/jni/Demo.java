@@ -2,8 +2,8 @@ package com.ikecin.jni;
 
 public class Demo {
     static {
-        System.loadLibrary("demo");
+        System.loadLibrary("Demo");
     }
 
-    public static native String methodA();
+    public static native String text();
 }

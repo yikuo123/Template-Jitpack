@@ -19,7 +19,7 @@ android {
         versionName customVersionName
         consumerProguardFiles 'consumer-proguard-rules.pro'
         ndk {
-            moduleName "demo"
+            moduleName "Demo"
         }
     }
     buildTypes {

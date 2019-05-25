@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     com_ikecin_jni_Demo
- * Method:    methodA
+ * Method:    text
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_com_ikecin_jni_Demo_methodA
+JNIEXPORT jstring JNICALL Java_com_ikecin_jni_Demo_text
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus
