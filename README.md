@@ -33,9 +33,21 @@ dependencies {
 ## 在 `library` 的 `build.gradle` 中添加 `ndk` 配置
 
 ```gradle
-defaultConfig {
-    ndk {
-        moduleName "Demo"
+android {
+    defaultConfig {
+        ndk {
+            moduleName "Demo"
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
     }
 }
 ```
@@ -55,7 +67,7 @@ public class Demo {
 
 ## 进入 `library` 目录
 
-以下的命令行都是在 `library` 目录执行
+以下的命令都是在 `library` 目录执行
 
 
 ## 使用 `javac` 编译成 `class` 文件
@@ -72,55 +84,48 @@ javah -d src/main/cpp -classpath ./build com.ikecin.jni.Demo
 
 `library/main/cpp` 下会自动生成头文件
 
-# 编写C文件
+## 编写C文件
 
 创建同名c文件,实现头文件中的方法
 
-# 添加编译脚本
+# 构建
 
-模块的build.gradle添加
+在`library`中创建文件 `src/main/cpp/CMakeLists.txt`
 
-```gradle
-android {
-    externalNativeBuild {
-        ndkBuild {
-            path 'Android.mk'
-        }
-    }
-}
-```
+配置cmake，内容如下(详见Demo)
 
-内容如下
+```cmake
+cmake_minimum_required(VERSION 3.4.1)
 
-```makefile
-LOCAL_PATH := $(call my-dir)
-include $(CLEAR_VARS)
+add_library( # Sets the name of the library.
+        Demo
 
-LOCAL_MODULE := Demo
-LOCAL_LDFLAGS := -Wl,--build-id
-LOCAL_LDLIBS := \
-    -llog \
-    -lz \
-    -lm \
+        # Sets the library as a shared library.
+        SHARED
 
-LOCAL_SRC_FILES := \
-    src/main/cpp/com_ikecin_jni_Demo.c \
+        # Provides a relative path to your source file(s).
+        com_ikecin_jni_Demo.c)
 
-LOCAL_C_INCLUDES += src/main/cpp
+find_library( # Sets the name of the path variable.
+        log-lib
 
-include $(BUILD_SHARED_LIBRARY)
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
+
+target_link_libraries( # Specifies the target library.
+        Demo
+
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
 ```
 
 > 注意，要使用Linux的分割符，否则在JitPack构建会出错（Windows上使用Linux分隔符仍能正常编译）
 
-
-# 执行构建操作
-
-
 # 配置混淆文件，排除jni方法
 
 `-keepclasseswithmembernames,includedescriptorclasses class * { native <methods>; }`
-
 
 # 其它参考
 

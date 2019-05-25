@@ -21,7 +21,19 @@ android {
         ndk {
             moduleName "Demo"
         }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -46,11 +58,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    externalNativeBuild {
-        ndkBuild {
-            path 'Android.mk'
-        }
     }
 }
 
