@@ -18,6 +18,7 @@ output.json
 /import-summary.txt
 
 .externalNativeBuild
+.cxx
 
 /.idea/workspace.xml
 /.idea/libraries
