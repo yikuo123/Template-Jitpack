@@ -11,10 +11,10 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode customVersionCode
         versionName customVersionName
         consumerProguardFiles 'consumer-proguard-rules.pro'
@@ -49,13 +49,14 @@ android {
             jniDebuggable true
             renderscriptDebuggable true
             zipAlignEnabled false
-            ndk {
-                abiFilters "armeabi-v7a" //debug模式只使用特定的abi可以加快构建速度
-            }
         }
     }
-
+    buildFeatures {
+        dataBinding false
+        viewBinding true
+    }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -69,6 +70,7 @@ repositories {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 }
 
 task sourcesJar(type: Jar) {
