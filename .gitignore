@@ -16,6 +16,7 @@ build
 manifest-merger-release-report.txt
 output.json
 /import-summary.txt
+output-metadata.json
 
 .externalNativeBuild
 .cxx

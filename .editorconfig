@@ -16,15 +16,11 @@ indent_style = tab
 indent_style = space
 indent_size = 2
 
-[*.{js,htm,html,php,css,xml,vue}]
+[*.{js,ts,tsx,htm,html,css,xml,vue}]
 indent_style = space
-indent_size = 4
+indent_size = 2
 
-[*.{java,c,cpp,h}]
-indent_style = space
-indent_size = 4
-
-[*.{swift,m}]
+[*.{java,c,cpp,h,php,swift,m}]
 indent_style = space
 indent_size = 4
 
