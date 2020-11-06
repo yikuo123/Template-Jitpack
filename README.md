@@ -4,7 +4,7 @@
 
 ## Description
 
-Jitpack 工程模板，用于快速将普通Android工程发布到 Jitpack
+A Jitpack project template which make publishing a general android library project  to Jitpack easily
 
 ## Usage
 
