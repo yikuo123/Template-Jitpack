@@ -1,10 +1,10 @@
-# JitPack Demo
+# JitPack Template
 
 [![](https://jitpack.io/v/yikuo123/Template-Jitpack.svg)](https://jitpack.io/#yikuo123/Template-Jitpack)
 
 ## Description
 
-This is description.
+Jitpack 工程模板，用于快速将普通Android工程发布到 Jitpack
 
 ## Usage
 
