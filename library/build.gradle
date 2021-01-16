@@ -70,7 +70,7 @@ repositories {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 }
 
 task sourcesJar(type: Jar) {
@@ -80,14 +80,10 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     failOnError false
+    options.encoding 'UTF-8'
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options {
-        encoding 'utf-8'
-        charSet 'utf-8'
-    }
-    exclude '**/BuildConfig.java'
-    exclude '**/R.java'
+    exclude '**/BuildConfig.java', '**/R.java'
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -98,7 +94,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
+            lib(MavenPublication) {
                 from components.release
                 groupId customGroupId
                 artifactId customArtifactId
