@@ -1,14 +1,12 @@
 package com.ikecin.demo;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.ikecin.sdk.jni.Demo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

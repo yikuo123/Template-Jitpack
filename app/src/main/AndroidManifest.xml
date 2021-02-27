@@ -7,7 +7,7 @@
     <application
         android:allowBackup="false"
         android:label="${applicationId}"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@android:style/Theme.DeviceDefault"
         tools:ignore="MissingApplicationIcon">
 
         <activity android:name="com.ikecin.demo.MainActivity">
