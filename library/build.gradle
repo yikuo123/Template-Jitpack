@@ -7,17 +7,17 @@ ext {
     customVersionCode = 1
     customVersionName = '1.0.0'
     customGroupId = 'com.ikecin.sdk'
-    customArtifactId = 'jni' // 必须保证artifactId唯一，AndroidManifest中的package值也要唯一，建议跟artifactID保持一致
+    customArtifactId = 'jni' // 必须保证artifactId唯一
 }
 
 android {
-    namespace 'com.ikecin.sdk.jni'
+    namespace "${customGroupId}.${customArtifactId}"
     compileSdk 35
     defaultConfig {
         minSdk 23
         targetSdk 35
-        versionCode 1
-        versionName "1.0.0"
+        versionCode customVersionCode
+        versionName customVersionName
         consumerProguardFiles 'consumer-proguard-rules.pro'
         ndk {
             moduleName "Demo"
@@ -60,6 +60,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 repositories {
@@ -73,40 +79,22 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.sourceFiles
-    archiveClassifier.set("sources")
-}
-
-task javadoc(type: Javadoc) {
-    failOnError false
-    options.encoding 'UTF-8'
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    exclude '**/BuildConfig.java', '**/R.java'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier.set("javadoc")
-    from javadoc.destinationDir
-}
-/**使用命令 gradlew publish 即可发布到本地maven*/
-afterEvaluate {
-    publishing {
-        publications {
-            lib(MavenPublication) {
+// 执行 gradlew publish 即可发布到本地目录
+publishing {
+    publications {
+        lib(MavenPublication) {
+            groupId customGroupId
+            artifactId customArtifactId
+            version customVersionName
+            afterEvaluate {
                 from components.release
-                groupId customGroupId
-                artifactId customArtifactId
-                version customVersionName
-                artifact sourcesJar
-                artifact javadocJar
             }
         }
-        repositories {
-            maven {
-                url = "$buildDir/repo"
-            }
+    }
+    repositories {
+        maven {
+            name = 'local'
+            url = layout.buildDirectory.dir("repo")
         }
     }
 }

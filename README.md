@@ -130,3 +130,9 @@ target_link_libraries( # Specifies the target library.
 # 其它参考
 
 http://wiki.jikexueyuan.com/project/jni-ndk-developer-guide/
+
+https://developer.android.com/build/publish-library/configure-pub-variants
+
+https://developer.android.com/build/publish-library/upload-library
+
+https://docs.gradle.org/current/userguide/publishing_maven.html
