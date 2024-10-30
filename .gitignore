@@ -5,6 +5,7 @@
 
 *.iml
 *.apk
+*.aab
 .gradle
 signing.gradle
 
@@ -14,9 +15,12 @@ signing.gradle
 build
 /*/bugly
 manifest-merger-release-report.txt
+import-summary.txt
 output.json
-/import-summary.txt
 output-metadata.json
+*.apk.json
+*.jks
+*.keystore
 
 .externalNativeBuild
 .cxx
@@ -27,6 +31,8 @@ output-metadata.json
 /.idea/modules.xml
 /.idea/.name
 /.idea/kotlinc.xml
-/.idea/codeStyleSettings.xml
 /.idea/caches
-/.idea/codeStyles/codeStyleConfig.xml
+/.idea/navEditor.xml
+/.idea/deploymentTargetDropDown.xml
+/.idea/misc.xml
+/.idea/deploymentTargetSelector.xml

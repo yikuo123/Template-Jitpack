@@ -11,12 +11,13 @@ ext {
 }
 
 android {
-    compileSdkVersion 30
+    namespace 'com.ikecin.sdk.jni'
+    compileSdk 35
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode customVersionCode
-        versionName customVersionName
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
         consumerProguardFiles 'consumer-proguard-rules.pro'
         ndk {
             moduleName "Demo"
@@ -41,24 +42,23 @@ android {
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
-            zipAlignEnabled true
         }
         debug {
             minifyEnabled false
             debuggable true
             jniDebuggable true
             renderscriptDebuggable true
-            zipAlignEnabled false
         }
     }
     buildFeatures {
+        buildConfig true
         dataBinding false
         viewBinding true
     }
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
@@ -70,7 +70,7 @@ repositories {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }
 
 task sourcesJar(type: Jar) {
