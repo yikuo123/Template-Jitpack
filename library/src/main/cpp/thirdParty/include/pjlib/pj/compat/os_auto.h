@@ -60,7 +60,7 @@
 #define PJ_HAS_NETINET_IP_H 1
 #define PJ_HAS_NETINET_TCP_H 1
 #define PJ_HAS_NET_IF_H 1
-#define PJ_HAS_IFADDRS_H 1
+/* #undef PJ_HAS_IFADDRS_H */
 #define PJ_HAS_INTTYPES_H 1
 #define PJ_HAS_SEMAPHORE_H 1
 #define PJ_HAS_SETJMP_H 1

@@ -1,10 +1,11 @@
 # For more information about using CMake with Android Studio, read the
 # documentation: https://d.android.com/studio/projects/add-native-code.html
-# CMake documentation: https://cmake.org/cmake/help/v3.6/manual/cmake-commands.7.html
+# CMake documentation: https://cmake.org/cmake/help/v3.22/manual/cmake-commands.7.html
+# https://developer.android.google.cn/ndk/guides/cmake?hl=zh-cn
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.6.0)
+cmake_minimum_required(VERSION 3.22.0)
 
 project(Library)
 
@@ -44,7 +45,6 @@ find_library(
         log
 )
 
-
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
@@ -59,9 +59,13 @@ target_link_libraries(
 )
 
 # 定义宏
-add_definitions(
-        -DPJ_IS_BIG_ENDIAN=1
-        -DPJ_IS_LITTLE_ENDIAN=01
+target_compile_definitions(
+        # Specifies the target library.
+        Demo
+
+        # definitions
+        PRIVATE PJ_IS_BIG_ENDIAN=1
+        PRIVATE PJ_IS_LITTLE_ENDIAN=0
 )
 
 # 添加头文件搜索路径
@@ -69,10 +73,19 @@ target_include_directories(
         # Specifies the target library.
         Demo PRIVATE
 
-        # Include header directories
-        ${PROJECT_SOURCE_DIR}/thirdParty/include/pjlib/
-        ${PROJECT_SOURCE_DIR}/thirdParty/include/pjlib-util/
-        ${PROJECT_SOURCE_DIR}/thirdParty/include/pjnath/
+        # Header directories
+        thirdParty/include/pjlib/
+        thirdParty/include/pjlib-util/
+        thirdParty/include/pjnath/
+)
+
+# 添加库搜索路径
+target_link_directories(
+        # Specifies the target library.
+        Demo PRIVATE
+
+        # library directories
+        thirdParty/libs/${ANDROID_ABI}
 )
 
 # 添加链接的库
@@ -81,7 +94,7 @@ target_link_libraries(
         Demo
 
         # Links the target library to libraries
-        ${PROJECT_SOURCE_DIR}/thirdParty/libs/${ANDROID_ABI}/libpj.a
-        ${PROJECT_SOURCE_DIR}/thirdParty/libs/${ANDROID_ABI}/libpjlib-util.a
-        ${PROJECT_SOURCE_DIR}/thirdParty/libs/${ANDROID_ABI}/libpjnath.a
+        pj
+        pjlib-util
+        pjnath
 )
