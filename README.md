@@ -84,6 +84,8 @@ javac -h src/main/cpp src/main/java/com/ikecin/sdk/jni/Demo.java
 
 `library/main/cpp` 下会自动生成头文件
 
+如果不需要单独的 jni 头文件，也可以直接使用 AndroidStudio 创建对应的 jni 函数到源文件中，使用更简单。（当没有对应的 jni 实现时，编辑器会在 native 方法上自动提示创建。）
+
 ## 编写C文件
 
 创建同名c文件,实现头文件中的方法
