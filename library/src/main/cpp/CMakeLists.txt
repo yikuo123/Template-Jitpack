@@ -64,6 +64,7 @@ target_compile_definitions(
         ${PROJECT_NAME}
 
         # definitions
+        PRIVATE LOG_TAG="lib${PROJECT_NAME}"
         PRIVATE PJ_AUTOCONF=1
 )
 
