@@ -6,8 +6,9 @@ JNIEXPORT jstring JNICALL Java_com_ikecin_sdk_jni_Demo_text(JNIEnv *env, jclass 
     pj_status_t status = pjnath_init();
     LOGI("jni call ok, result=%d", status);
 
-    char result[128];
-    sprintf(result, "jni call ok, result=%d", status);
+    const int resultSize = 128;
+    char result[resultSize];
+    snprintf(result, resultSize, "jni call ok, result=%d", status);
 
     return (*env)->NewStringUTF(env, result);
 }
