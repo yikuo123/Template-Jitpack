@@ -17,3 +17,4 @@
 #}
 
 -keepclasseswithmembernames,includedescriptorclasses class * { native <methods>; }
+-keepclassmembers class * { public <init>(); }
