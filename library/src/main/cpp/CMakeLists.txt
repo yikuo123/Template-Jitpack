@@ -7,7 +7,7 @@
 
 cmake_minimum_required(VERSION 3.22.0)
 
-project(Library)
+project(Demo)
 
 message("PROJECT_NAME=${PROJECT_NAME}")
 message("ANDROID_ABI=${ANDROID_ABI}")
@@ -21,7 +21,7 @@ message("PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
 
 add_library(
         # Sets the name of the library.
-        Demo
+        ${PROJECT_NAME}
 
         # Sets the library as a shared library.
         SHARED
@@ -51,17 +51,17 @@ find_library(
 
 target_link_libraries(
         # Specifies the target library.
-        Demo
+        ${PROJECT_NAME}
 
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
 )
 
-# 定义宏
+# 添加宏定义
 target_compile_definitions(
         # Specifies the target library.
-        Demo
+        ${PROJECT_NAME}
 
         # definitions
         PRIVATE PJ_AUTOCONF=1
@@ -70,7 +70,7 @@ target_compile_definitions(
 # 添加头文件搜索路径
 target_include_directories(
         # Specifies the target library.
-        Demo PRIVATE
+        ${PROJECT_NAME} PRIVATE
 
         # Header directories
         thirdParty/include/${ANDROID_ABI}/pjlib
@@ -82,7 +82,7 @@ target_include_directories(
 # 添加库搜索路径
 target_link_directories(
         # Specifies the target library.
-        Demo PRIVATE
+        ${PROJECT_NAME} PRIVATE
 
         # library directories
         thirdParty/libs/${ANDROID_ABI}
@@ -91,7 +91,7 @@ target_link_directories(
 # 添加链接的库
 target_link_libraries(
         # Specifies the target library.
-        Demo
+        ${PROJECT_NAME}
 
         # Links the target library to libraries
         pj

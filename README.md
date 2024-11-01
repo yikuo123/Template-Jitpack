@@ -97,11 +97,11 @@ javah -d src/main/cpp -classpath ./build com.ikecin.sdk.jni.Demo
 ```cmake
 cmake_minimum_required(VERSION 3.22.0)
 
-project(Library)
+project(Demo)
 
 add_library(
         # Sets the name of the library.
-        Demo
+        ${PROJECT_NAME}
 
         # Sets the library as a shared library.
         SHARED
@@ -122,7 +122,7 @@ find_library(
 
 target_link_libraries(
         # Specifies the target library.
-        Demo
+        ${PROJECT_NAME}
 
         # Links the target library to the log library
         # included in the NDK.
