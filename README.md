@@ -69,17 +69,17 @@ public class Demo {
 
 以下的命令都是在 `library` 目录执行
 
-
-## 使用 `javac` 编译成 `class` 文件
+## 生成 .h 头文件
 
 ```bash
-javac src/main/java/com/ikecin/sdk/jni/Demo.java -d ./build 
+# JDK < 10
+javac src/main/java/com/ikecin/sdk/jni/Demo.java -d ./build
+javah -d src/main/cpp -classpath ./build com.ikecin.sdk.jni.Demo
 ```
 
-## 使用 javah 生成c头文件
-
 ```bash
-javah -d src/main/cpp -classpath ./build com.ikecin.sdk.jni.Demo
+# JDK >= 10
+javac -h src/main/cpp src/main/java/com/ikecin/sdk/jni/Demo.java
 ```
 
 `library/main/cpp` 下会自动生成头文件
