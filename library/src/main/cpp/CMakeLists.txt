@@ -64,8 +64,7 @@ target_compile_definitions(
         Demo
 
         # definitions
-        PRIVATE PJ_IS_BIG_ENDIAN=1
-        PRIVATE PJ_IS_LITTLE_ENDIAN=0
+        PRIVATE PJ_AUTOCONF=1
 )
 
 # 添加头文件搜索路径
@@ -74,9 +73,10 @@ target_include_directories(
         Demo PRIVATE
 
         # Header directories
-        thirdParty/include/pjlib/
-        thirdParty/include/pjlib-util/
-        thirdParty/include/pjnath/
+        thirdParty/include/${ANDROID_ABI}/pjlib
+        thirdParty/include/common/pjlib
+        thirdParty/include/common/pjlib-util
+        thirdParty/include/common/pjnath
 )
 
 # 添加库搜索路径
