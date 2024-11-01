@@ -95,30 +95,39 @@ javah -d src/main/cpp -classpath ./build com.ikecin.sdk.jni.Demo
 配置cmake，内容如下(详见Demo)
 
 ```cmake
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.22.0)
 
-add_library( # Sets the name of the library.
+project(Library)
+
+add_library(
+        # Sets the name of the library.
         Demo
 
         # Sets the library as a shared library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        com_ikecin_sdk_jni_Demo.c)
+        com_ikecin_sdk_jni_Demo.c
+)
 
-find_library( # Sets the name of the path variable.
+find_library(
+        # Sets the name of the path variable.
         log-lib
 
         # Specifies the name of the NDK library that
         # you want CMake to locate.
-        log)
+        log
+)
 
-target_link_libraries( # Specifies the target library.
+
+target_link_libraries(
+        # Specifies the target library.
         Demo
 
         # Links the target library to the log library
         # included in the NDK.
-        ${log-lib})
+        ${log-lib}
+)
 ```
 
 > 注意，要使用Linux的分割符，否则在JitPack构建会出错（Windows上使用Linux分隔符仍能正常编译）
