@@ -28,6 +28,7 @@ add_library(
 
         # Provides a relative path to your source file(s).
         com_ikecin_sdk_jni_Demo.c
+        lib_wrapper.c
 )
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -76,8 +77,6 @@ target_include_directories(
         # Header directories
         thirdParty/include/${ANDROID_ABI}/pjlib
         thirdParty/include/common/pjlib
-        thirdParty/include/common/pjlib-util
-        thirdParty/include/common/pjnath
 )
 
 # 添加库搜索路径
@@ -95,7 +94,5 @@ target_link_libraries(
         ${PROJECT_NAME}
 
         # Links the target library to libraries
-        pj
-        pjlib-util
-        pjnath
+        libpj.a
 )

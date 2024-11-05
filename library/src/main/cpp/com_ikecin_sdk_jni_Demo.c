@@ -1,14 +1,24 @@
-#include <pjnath.h>
+#include "stdio.h"
 #include "log.h"
-#include "com_ikecin_sdk_jni_Demo.h"
+#include "lib_wrapper.h"
+
+/*
+JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    LOGI("JNI_OnLoad");
+    return JNI_VERSION_1_4;
+}
+
+JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
+    LOGI("JNI_OnUnload");
+}
+*/
 
 JNIEXPORT jstring JNICALL Java_com_ikecin_sdk_jni_Demo_text(JNIEnv *env, jclass class) {
-    pj_status_t status = pjnath_init();
-    LOGI("jni call ok, result=%d", status);
+    int status = lib_pj_init();
+    LOGI("lib_pj_init: status=%d", status);
 
-    const int resultSize = 128;
-    char result[resultSize];
-    snprintf(result, resultSize, "jni call ok, result=%d", status);
+    char message[128];
+    snprintf(message, sizeof(message), "lib_pj_init: status=%d", status);
 
-    return (*env)->NewStringUTF(env, result);
+    return (*env)->NewStringUTF(env, message);
 }
