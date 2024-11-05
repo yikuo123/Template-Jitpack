@@ -12,6 +12,8 @@ project(Demo)
 message("PROJECT_NAME=${PROJECT_NAME}")
 message("ANDROID_ABI=${ANDROID_ABI}")
 message("ANDROID_PLATFORM=${ANDROID_PLATFORM}")
+message("CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
+message("ARTIFACT_ID=${ARTIFACT_ID}")
 message("PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
 
 # Creates and names a library, sets it as either STATIC

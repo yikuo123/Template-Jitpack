@@ -24,6 +24,8 @@ android {
         }
         externalNativeBuild {
             cmake {
+                arguments.add("-DARTIFACT_ID=$customArtifactId") // 自定义 CMakeLists 变量
+                cFlags ""
                 cppFlags ""
             }
         }

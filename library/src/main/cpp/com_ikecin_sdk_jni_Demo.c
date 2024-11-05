@@ -1,4 +1,5 @@
-#include "stdio.h"
+#include <jni.h>
+#include <stdio.h>
 #include "log.h"
 #include "lib_wrapper.h"
 
@@ -14,6 +15,14 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
 */
 
 JNIEXPORT jstring JNICALL Java_com_ikecin_sdk_jni_Demo_text(JNIEnv *env, jclass class) {
+
+    // JNI 中可以通过 C Stander 中的 NDEBUG 宏来判断是否调试模式
+#ifdef NDEBUG
+    LOGI("BUILD_TYPE=RELEASE");
+#else
+    LOGI("BUILD_TYPE=DEBUG");
+#endif
+
     int status = lib_pj_init();
     LOGI("lib_pj_init: status=%d", status);
 
