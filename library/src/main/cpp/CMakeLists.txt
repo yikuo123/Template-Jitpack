@@ -2,6 +2,7 @@
 # documentation: https://d.android.com/studio/projects/add-native-code.html
 # CMake documentation: https://cmake.org/cmake/help/v3.22/manual/cmake-commands.7.html
 # https://developer.android.google.cn/ndk/guides/cmake?hl=zh-cn
+# https://developer.android.google.cn/studio/projects/configure-cmake?hl=zh-cn
 
 # Sets the minimum version of CMake required to build the native library.
 
