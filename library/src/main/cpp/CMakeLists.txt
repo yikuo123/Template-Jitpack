@@ -10,6 +10,9 @@ cmake_minimum_required(VERSION 3.22.0)
 
 project(Demo)
 
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -DDEBUG=1")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG=1")
+
 message("PROJECT_NAME=${PROJECT_NAME}")
 message("ANDROID_ABI=${ANDROID_ABI}")
 message("ANDROID_PLATFORM=${ANDROID_PLATFORM}")
@@ -62,7 +65,7 @@ target_link_libraries(
         ${log-lib}
 )
 
-# 添加宏定义
+# 添加自定义宏
 target_compile_definitions(
         # Specifies the target library.
         ${PROJECT_NAME}

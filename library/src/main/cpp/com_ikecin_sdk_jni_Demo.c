@@ -16,11 +16,10 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
 
 JNIEXPORT jstring JNICALL Java_com_ikecin_sdk_jni_Demo_text(JNIEnv *env, jclass class) {
 
-    // JNI 中可以通过 C Stander 中的 NDEBUG 宏来判断是否调试模式
-#ifdef NDEBUG
-    LOGI("BUILD_TYPE=RELEASE");
-#else
+#ifdef DEBUG
     LOGI("BUILD_TYPE=DEBUG");
+#else
+    LOGI("BUILD_TYPE=RELEASE");
 #endif
 
     int status = lib_pj_init();
