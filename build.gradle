@@ -8,12 +8,13 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath 'com.android.tools.build:gradle:8.13.2'
     }
 }
 
 allprojects {
     repositories {
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public/' }
         maven { url 'https://jitpack.io' }

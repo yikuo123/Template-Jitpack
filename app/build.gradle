@@ -17,14 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
-            renderscriptDebuggable false
         }
         debug {
             minifyEnabled false
             shrinkResources false
             debuggable true
             jniDebuggable true
-            renderscriptDebuggable true
         }
     }
     buildFeatures {

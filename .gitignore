@@ -36,3 +36,4 @@ output-metadata.json
 /.idea/deploymentTargetDropDown.xml
 /.idea/misc.xml
 /.idea/deploymentTargetSelector.xml
+**/baselineProfiles
