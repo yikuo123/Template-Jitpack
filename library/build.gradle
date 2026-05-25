@@ -94,7 +94,16 @@ publishing {
     repositories {
         maven {
             name = 'local'
-            url = layout.buildDirectory.dir("repo")
+            url = layout.buildDirectory.dir("maven")
+        }
+        if (findProperty("remoteMavenUrl")) {
+            maven {
+                url = findProperty('remoteMavenUrl')
+                credentials {
+                    username = findProperty('remoteMavenUsername')
+                    password = findProperty('remoteMavenPassword')
+                }
+            }
         }
     }
 }
