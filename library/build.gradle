@@ -79,7 +79,7 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 
-    api 'androidx.annotation:annotation:1.10.0'
+    api 'androidx.annotation:annotation:1.0.1'
 }
 
 // 执行 gradlew publish 即可发布到本地目录
