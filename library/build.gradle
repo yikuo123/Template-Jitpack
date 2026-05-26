@@ -53,7 +53,7 @@ android {
     buildFeatures {
         buildConfig true
         dataBinding false
-        viewBinding true
+        viewBinding false
     }
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -78,6 +78,8 @@ dependencies {
     // library 不支持包含 aar，可以使用 compileOnlyApi、在线引用，或者为 aar 创建单独的 module
     api fileTree(include: ['*.jar'], dir: 'libs')
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
+    api 'androidx.annotation:annotation:1.10.0'
 }
 
 // 执行 gradlew publish 即可发布到本地目录
