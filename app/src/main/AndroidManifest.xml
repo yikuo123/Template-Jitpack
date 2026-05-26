@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
         android:label="${applicationId}"
-        android:theme="@android:style/Theme.DeviceDefault"
-        tools:ignore="MissingApplicationIcon">
+        android:theme="@android:style/Theme.DeviceDefault">
 
         <activity android:name="com.ikecin.demo.MainActivity" android:exported="true">
             <intent-filter>
