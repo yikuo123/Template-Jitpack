@@ -99,12 +99,12 @@ publishing {
             name = 'local'
             url = layout.buildDirectory.dir("maven")
         }
-        if (findProperty("remoteMavenUrl")) {
+        if (project.hasProperty("remoteMavenUrl")) {
             maven {
-                url = findProperty('remoteMavenUrl')
+                url = project.findProperty('remoteMavenUrl')
                 credentials {
-                    username = findProperty('remoteMavenUsername')
-                    password = findProperty('remoteMavenPassword')
+                    username = project.findProperty('remoteMavenUsername')
+                    password = project.findProperty('remoteMavenPassword')
                 }
             }
         }
