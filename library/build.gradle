@@ -81,7 +81,7 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 
     // 需要对外暴露的依赖使用 api，需要对外隐藏的依赖使用 implementation
-    implementation 'androidx.annotation:annotation:1.0.1'
+    implementation 'androidx.annotation:annotation:1.2.0'
 }
 
 // 执行 gradlew publish 即可发布到本地目录

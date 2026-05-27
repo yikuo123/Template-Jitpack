@@ -45,13 +45,6 @@
 # 保护异常名称
 -keepnames class * extends java.lang.Throwable
 
-# fixed: 默认规则只对 support 库中的 Keep 注解有效
--keep class androidx.annotation.Keep
--keep @androidx.annotation.Keep class * {*;}
--keepclasseswithmembers class * { @androidx.annotation.Keep <methods>; }
--keepclasseswithmembers class * { @androidx.annotation.Keep <fields>; }
--keepclasseswithmembers class * { @androidx.annotation.Keep <init>(...); }
-
 # 第三方库不显示警告
 -dontwarn com.android.**
 -dontwarn android.**
