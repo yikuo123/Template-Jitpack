@@ -29,10 +29,14 @@
 # 作为lib发布时，避免参数名称被混淆
 -keepparameternames
 
+# 作为lib发布时，避免不同 lib 间包名冲突
+#-keeppackagenames
+-flattenpackagehierarchy 'com.ikecin.sdk.jni'
+
 # 作为lib发布时，保护 public 类（不包括 BuildConfig、internal 包及其子包下的类）的 public/protected 成员不被移除和混淆
--keep public class !**.BuildConfig, !**.internal.**, !**.internal$** { public protected *;}
--keep public enum !**.internal.**, !**.internal$** { public protected *; }
--keep public interface !**.internal.**, !**.internal$** { *; }
+-keep,allowoptimization public class !**.BuildConfig, !**.internal.**, !**.internal$** { public protected *;}
+-keep,allowoptimization public enum !**.internal.**, !**.internal$** { public protected *; }
+-keep,allowoptimization public interface !**.internal.**, !**.internal$** { *; }
 
 # 避免包含jni方法的类被混淆和移除；避免jni方法的参数与返回值类型被混淆
 -keepclasseswithmembers,includedescriptorclasses class * { native <methods>; }

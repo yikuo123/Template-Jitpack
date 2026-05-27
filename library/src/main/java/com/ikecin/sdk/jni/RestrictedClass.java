@@ -1,4 +1,4 @@
-package com.ikecin.sdk.demo;
+package com.ikecin.sdk.jni;
 
 import androidx.annotation.RestrictTo;
 

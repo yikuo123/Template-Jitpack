@@ -1,4 +1,4 @@
-package com.ikecin.sdk.internal;
+package com.ikecin.sdk.jni.internal;
 
 import androidx.annotation.Keep;
 

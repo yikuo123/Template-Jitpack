@@ -1,6 +1,4 @@
-package com.ikecin.sdk.demo;
-
-import com.ikecin.sdk.jni.BuildConfig;
+package com.ikecin.sdk.jni;
 
 public class PublicClass {
     public void test1(int test1) {

@@ -1,4 +1,4 @@
-package com.ikecin.sdk.internal;
+package com.ikecin.sdk.jni.internal;
 
 public class RemovedInternalClass {
     public void test1(int test1) {
