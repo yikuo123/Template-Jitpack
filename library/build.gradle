@@ -76,11 +76,12 @@ repositories {
 }
 
 dependencies {
-    // library 不支持包含 aar，可以使用 compileOnlyApi、在线引用，或者为 aar 创建单独的 module
-    api fileTree(include: ['*.jar'], dir: 'libs')
+    // library 不支持包含 aar，可以使用 compileOnly、compileOnlyApi、在线引用，或者为 aar 创建单独的 module
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 
-    api 'androidx.annotation:annotation:1.0.1'
+    // 需要对外暴露的依赖使用 api，需要对外隐藏的依赖使用 implementation
+    implementation 'androidx.annotation:annotation:1.0.1'
 }
 
 // 执行 gradlew publish 即可发布到本地目录
