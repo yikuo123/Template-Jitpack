@@ -40,7 +40,8 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro'
+            // 注意：library 中不要使用 proguard-android-optimize.txt，其中包含 -allowaccessmodification，会导致编译成 aar 后，部分 private 变量变 public
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro'
             debuggable false
             jniDebuggable false
         }
