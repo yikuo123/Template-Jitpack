@@ -26,15 +26,13 @@
 # 保留常见属性
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
 
-# 作为lib发布时，不应该混淆和移除公开的方法与属性，参数名也最好不要混淆
-# 避免参数名称被混淆
-# 该配置暂时没生效，见https://stackoverflow.com/questions/56057586/how-to-keep-class-constructor-argument-parameter-names-with-android-r8
+# 作为lib发布时，避免参数名称被混淆
 -keepparameternames
 
-# 避免类和接口的方法被混淆和移除,排除BuildConfig
--keep public class !**.BuildConfig, * { public protected *; }
--keep public enum * { public protected *; }
--keep public interface * { *; }
+# 作为lib发布时，保护 public 类（不包括 BuildConfig、internal 包及其子包下的类）的 public/protected 成员不被移除和混淆
+-keep public class !**.BuildConfig, !**.internal.**, !**.internal$** { public protected *;}
+-keep public enum !**.internal.**, !**.internal$** { public protected *; }
+-keep public interface !**.internal.**, !**.internal$** { *; }
 
 # 避免包含jni方法的类被混淆和移除；避免jni方法的参数与返回值类型被混淆
 -keepclasseswithmembers,includedescriptorclasses class * { native <methods>; }
