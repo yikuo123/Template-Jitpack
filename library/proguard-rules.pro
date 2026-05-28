@@ -4,8 +4,10 @@
 # 保留常见属性
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
 
-# 作为lib发布时，避免参数名称被混淆
+# 作为lib发布时，避免常规方法参数名称被混淆
 -keepparameternames
+# 作为lib发布时，避免抽象方法参数名称被混淆（还需指定编译参数 -parameters）
+-keepattributes MethodParameters
 
 # 作为lib发布时，避免不同 lib 间包名冲突
 #-keeppackagenames
