@@ -3,7 +3,7 @@
 # http://developer.android.com/guide/developing/tools/proguard.html
 
 -ignorewarnings
--keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod,RuntimeInvisibleAnnotations,RuntimeInvisibleParameterAnnotations,RuntimeInvisibleTypeAnnotations
 
 -keepnames class * extends java.lang.Throwable
 -dontwarn com.android.**

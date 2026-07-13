@@ -2,14 +2,15 @@
 #-dontobfuscate
 
 # 保留常见属性
--keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod,RuntimeInvisibleAnnotations,RuntimeInvisibleParameterAnnotations,RuntimeInvisibleTypeAnnotations
 
 # 作为lib发布时，避免常规方法参数名称被混淆
 -keepparameternames
+
 # 作为lib发布时，避免抽象方法参数名称被混淆（还需指定编译参数 -parameters）
 -keepattributes MethodParameters
 
-# 作为lib发布时，避免不同 lib 间包名冲突
+# 作为lib发布时，保持包名不变，避免不同 lib 间类名冲突
 -keeppackagenames
 
 # 作为lib发布时，保护 public 类（不包括 BuildConfig、internal 包及其子包下的类）的 public/protected 成员不被移除和混淆

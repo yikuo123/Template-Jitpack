@@ -1,50 +1,51 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.ikecin.demo'
-    compileSdk 35
+    namespace = 'com.ikecin.demo'
+    compileSdk = 35
     defaultConfig {
-        minSdk 23
-        targetSdk 35
-        versionCode 1
-        versionName "1.0.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = 23
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0.0"
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            debuggable false
-            jniDebuggable false
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
+            debuggable = false
+            jniDebuggable = false
         }
         debug {
-            minifyEnabled false
-            shrinkResources false
-            debuggable true
-            jniDebuggable true
+            minifyEnabled = false
+            shrinkResources = false
+            debuggable = true
+            jniDebuggable = true
         }
     }
     buildFeatures {
-        buildConfig true
-        dataBinding false
-        viewBinding true
+        aidl = true
+        resValues = true
+        buildConfig = true
+        dataBinding = false
+        viewBinding = true
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     flavorDimensions = ['default']
     productFlavors {
         Demo {
-            applicationId 'com.ikecin.demo'
+            applicationId = 'com.ikecin.demo'
         }
     }
 }
 
 try {
-    apply from: 'signing.gradle'
+    apply(from: 'signing.gradle')
     println "从 signing.gradle 中读取签名配置"
 } catch (ignored) {
     println "signing.gradle 不存在,已忽略并使用默认签名配置"
@@ -52,7 +53,7 @@ try {
 
 repositories {
     flatDir {
-        dirs 'libs'
+        dirs('libs')
     }
 }
 
