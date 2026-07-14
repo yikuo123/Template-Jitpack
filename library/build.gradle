@@ -40,7 +40,8 @@ android {
     buildTypes {
         release {
             minifyEnabled = true
-            proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'consumer-proguard-rules.pro')
+            // AGP9 使用 getDefaultProguardFile 只允许加载 proguard-android-optimize.txt，其中包含 -allowaccessmodification 且无法禁用，因此手动复制一份规避
+            proguardFiles('proguard-android.txt', 'proguard-rules.pro', 'consumer-proguard-rules.pro')
             debuggable = false
             jniDebuggable = false
         }
