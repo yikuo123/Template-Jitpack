@@ -38,13 +38,14 @@ add_library(
 )
 
 # 16KB page size support (Android 15+)
-if(ANDROID_NATIVE_API_LEVEL GREATER_EQUAL 35)
+if (ANDROID_NATIVE_API_LEVEL GREATER_EQUAL 35)
     target_link_options(
             ${PROJECT_NAME}
             PRIVATE
             "-Wl,-z,max-page-size=16384"
+            "-Wl,-z,common-page-size=16384"
     )
-endif()
+endif ()
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
